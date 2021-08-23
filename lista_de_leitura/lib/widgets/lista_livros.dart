@@ -11,7 +11,7 @@ class ListaLivros extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      physics: NeverScrollableScrollPhysics(), //permite a rolagem da teal
+      physics: NeverScrollableScrollPhysics(), //permite a rolagem da tela
       shrinkWrap: true,
       itemBuilder: (context, i) {
         final livro = listaLivros[i];
@@ -21,9 +21,11 @@ class ListaLivros extends StatelessWidget {
             child: Text(
               livro.titulo,
               style: TextStyle(
-                  color: livro.lido ? Colors.grey : Colors.black,
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold),
+                color: livro.lido ? Colors.grey : Colors.black,
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                decoration: livro.lido ? TextDecoration.lineThrough : null,
+              ),
             ),
           ),
           subtitle: Padding(
@@ -32,10 +34,14 @@ class ListaLivros extends StatelessWidget {
               livro.descricao,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(
+                color: livro.lido ? Colors.grey : Colors.black,
+                decoration: livro.lido ? TextDecoration.lineThrough : null,
+              ),
             ),
           ),
           visualDensity: VisualDensity.compact,
+          contentPadding: EdgeInsets.all(0),
         );
       },
       separatorBuilder: (context, i) => LinhaHorizontal(),

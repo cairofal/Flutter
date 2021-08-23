@@ -10,7 +10,7 @@ class LivroModel {
   bool lido;
 }
 
-final listaLivros = [
+final listaLivrosMock = [
   LivroModel(
       titulo: 'Codigo limpo', descricao: 'Ótimo livro. Recomendo', lido: true),
   LivroModel(
