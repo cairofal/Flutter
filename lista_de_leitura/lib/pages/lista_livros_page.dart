@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lista_de_leitura/models/livro_model.dart';
 import 'package:lista_de_leitura/widgets/linha_horizontal.dart';
 import 'package:lista_de_leitura/widgets/lista_livros.dart';
 
@@ -38,7 +39,9 @@ class ListaLivrosPageState extends State<ListaLivrosPage> {
                     ),
                   ),
                   LinhaHorizontal(),
-                  ListaLivros(),
+                  ListaLivros(
+                    listaLivros: listaLivrosMock,
+                  ),
                   LinhaHorizontal(),
                 ],
               ),
