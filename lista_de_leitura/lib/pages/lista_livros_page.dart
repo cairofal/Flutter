@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lista_de_leitura/models/livro_model.dart';
+import 'package:lista_de_leitura/pages/formulario_livro-page.dart';
 import 'package:lista_de_leitura/widgets/linha_horizontal.dart';
 import 'package:lista_de_leitura/widgets/lista_livros.dart';
 
@@ -9,6 +10,14 @@ class ListaLivrosPage extends StatefulWidget {
 }
 
 class ListaLivrosPageState extends State<ListaLivrosPage> {
+  List<LivroModel> meusLivros;
+
+  @override
+  void initState() {
+    meusLivros = [];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +40,9 @@ class ListaLivrosPageState extends State<ListaLivrosPage> {
                               fontWeight: FontWeight.bold,
                             )),
                         FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/form');
+                          },
                           child: Icon(Icons.add),
                           mini: true,
                         )
@@ -40,9 +51,9 @@ class ListaLivrosPageState extends State<ListaLivrosPage> {
                   ),
                   LinhaHorizontal(),
                   ListaLivros(
-                    listaLivros: listaLivrosMock,
+                    listaLivros: meusLivros,
                   ),
-                  LinhaHorizontal(),
+                  if (meusLivros.isNotEmpty) LinhaHorizontal(),
                 ],
               ),
               Padding(

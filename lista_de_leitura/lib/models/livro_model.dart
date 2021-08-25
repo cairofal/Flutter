@@ -8,15 +8,9 @@ class LivroModel {
   String titulo;
   String descricao;
   bool lido;
-}
 
-final listaLivrosMock = [
-  LivroModel(
-      titulo: 'Codigo limpo', descricao: 'Ótimo livro. Recomendo', lido: true),
-  LivroModel(
-    titulo: 'C completo e total',
-    descricao: 'Ótimo livro. Recomendo',
-    lido: false,
-  ),
-  LivroModel(titulo: 'Java use a cabeça', descricao: 'Livro bom', lido: true),
-];
+  @override
+  String toString() {
+    return 'titulo: $titulo, descricao: $descricao, lido $lido';
+  }
+}
