@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lista_de_leitura/pages/formulario_livro-page.dart';
 import 'package:lista_de_leitura/pages/lista_livros_page.dart';
 
 void main() {
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.kalamTextTheme(Theme.of(context).textTheme),
       ),
+      routes: {
+        '/form': (context) => FormularioLivroPage(),
+      },
       home: ListaLivrosPage(),
     );
   }
