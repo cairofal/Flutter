@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.kalamTextTheme(Theme.of(context).textTheme),
       ),
       routes: {
-        '/form': (context) => FormularioLivroPage(),
+        // '/form': (context) => FormularioLivroPage(),
       },
       home: ListaLivrosPage(),
     );

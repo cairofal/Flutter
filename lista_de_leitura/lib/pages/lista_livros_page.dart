@@ -10,11 +10,24 @@ class ListaLivrosPage extends StatefulWidget {
 }
 
 class ListaLivrosPageState extends State<ListaLivrosPage> {
-  List<LivroModel> meusLivros;
+  Set<LivroModel> meusLivros;
+
+  Function(LivroModel) onCadastrar;
+  Function(LivroModel) onDeletar;
 
   @override
   void initState() {
-    meusLivros = [];
+    meusLivros = {};
+    onCadastrar = (LivroModel livroModel) {
+      setState(() {
+        meusLivros.add(livroModel);
+      });
+    };
+    onDeletar = (LivroModel livroModel) {
+      setState(() {
+        meusLivros.remove(livroModel);
+      });
+    };
     super.initState();
   }
 
@@ -41,7 +54,9 @@ class ListaLivrosPageState extends State<ListaLivrosPage> {
                             )),
                         FloatingActionButton(
                           onPressed: () {
-                            Navigator.of(context).pushNamed('/form');
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => FormularioLivroPage(
+                                    onCadastrar: onCadastrar)));
                           },
                           child: Icon(Icons.add),
                           mini: true,
@@ -52,6 +67,8 @@ class ListaLivrosPageState extends State<ListaLivrosPage> {
                   LinhaHorizontal(),
                   ListaLivros(
                     listaLivros: meusLivros,
+                    onCadastrar: onCadastrar,
+                    onDeletar: onDeletar,
                   ),
                   if (meusLivros.isNotEmpty) LinhaHorizontal(),
                 ],
