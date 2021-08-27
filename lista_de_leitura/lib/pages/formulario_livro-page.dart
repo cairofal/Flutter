@@ -1,7 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:lista_de_leitura/models/livro_model.dart';
 
 class FormularioLivroPage extends StatefulWidget {
+  FormularioLivroPage({this.livro, @required this.onCadastrar});
+
+  final LivroModel livro;
+  final Function(LivroModel) onCadastrar;
+
   @override
   _FormularioLivroPageState createState() => _FormularioLivroPageState();
 }
@@ -13,7 +20,10 @@ class _FormularioLivroPageState extends State<FormularioLivroPage> {
   @override
   void initState() {
     _formKey = GlobalKey<FormState>();
-    livro = LivroModel();
+    livro = widget.livro ??
+        LivroModel(
+          id: Random().nextInt(255),
+        );
     super.initState();
   }
 
@@ -39,6 +49,7 @@ class _FormularioLivroPageState extends State<FormularioLivroPage> {
             Padding(
               padding: const EdgeInsets.all(22),
               child: TextFormField(
+                initialValue: livro.titulo,
                 decoration: InputDecoration(
                   hintText: 'Título',
                   hintStyle: TextStyle(
@@ -91,7 +102,8 @@ class _FormularioLivroPageState extends State<FormularioLivroPage> {
                 final form = _formKey.currentState;
                 if (form.validate()) {
                   form.save();
-                  print(livro);
+                  widget.onCadastrar(livro);
+                  Navigator.of(context).pop();
                 }
               },
               padding: EdgeInsets.symmetric(horizontal: 40),
